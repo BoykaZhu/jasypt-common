@@ -32,12 +32,14 @@ Usage: jasypt-common [options]
 Options:
   -v, --version                           output the version number
   -p, --secretKey <pwd>                   The secret key
-  -e, --encryptParams [encryptParams...]  Encrypt clear text with cipher, format: -e cipher,clearText
-  -d, --decryptParams [decryptParams...]  Decrypt text with cipher, format: -e cipher,encryptedText
+  -e, --encryptParams [encryptParams...]  Encrypt clear text with cipher, format: -e cipher,clearText or -e clearText
+  -d, --decryptParams [decryptParams...]  Decrypt text with cipher, format: -d cipher,encryptedText or -d encryptedText
   -h, --help                              display help for command
 
 Examples:
 
   $ jasypt-common -p 0x1995 -e des-cbc,admin
+  $ jasypt-common -p 0x1995 -e admin
   $ jasypt-common -p 0x1995 -d des-cbc,BaKgfN63GdOh0kAHsacvmQ==
+  $ jasypt-common -p 0x1995 -d BaKgfN63GdOh0kAHsacvmQ==  
 ```
