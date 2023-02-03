@@ -1,0 +1,52 @@
+{
+  "name": "jasypt-common",
+  "version": "1.0.0",
+  "description": "Node.js module adapt to Jasypt",
+  "main": "index.js",
+  "bin": {
+    "jasypt": "./bin/rdojasypt.js"
+  },
+  "files": [
+    "bin/",
+    "encryptor.js",
+    "index.js",
+    "rdoJasypt.js",
+    "util.js",
+    "cache.js"
+  ],
+  "scripts": {
+    "test": "tap -j4 test/*",
+    "ci": "tap -j4 test/* --cov",
+    "cov": "tap -j4 test/* --cov --coverage-report=html",
+    "benchmark": "node ./benchmark/jasypt.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoykaZhu/jasypt-common.git"
+  },
+  "keywords": [
+    "jasypt",
+    "pbewithmd5anddes",
+    "crypto",
+    "encrypt",
+    "decrypt",
+    "BasicTextEncryptor"
+  ],
+  "author": "Boyka Zhu <boyka.czhu@gmail.com> (https://github.com/BoykaZhu)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BoykaZhu/jasypt-common/issues"
+  },
+  "homepage": "https://github.com/BoykaZhu/jasypt-common#readme",
+  "devDependencies": {
+    "beautify-benchmark": "^0.2.4",
+    "benchmark": "^2.1.4",
+    "codecov": "^3.6.5",
+    "nyc": "^14.1.1",
+    "tap": "^14.10.5"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "lru-cache": "^6.0.0"
+  }
+}
