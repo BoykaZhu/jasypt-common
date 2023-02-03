@@ -4,25 +4,30 @@ Jasypt with customized cipher
 #### Usage
 **`SDK`**
 ``` ts
-import Jasypt from "rdo-jasypt";
+import Jasypt from "jasypt-common";
 
-function example() {
-  const jasypt = new Jasypt();
-  // Setup secret key
-  jasypt.setSecretKey('G0CvDz7oJn60');
-  // Encrypt
-  const encryptMsg = jasypt.encrypt('admin', 'des-cbc');
-  // Decrypt
-  const decryptMsg = jasypt.decrypt(encryptMsg, 'des-cbc');
-}
+
+const jasypt = new Jasypt();
+// Setup secret key
+jasypt.setSecretKey('G0CvDz7oJn60');
+// Encrypt with cipher
+const encryptText = jasypt.encrypt('admin', 'des-cbc');
+// Decrypt with cipher
+const decryptText = jasypt.decrypt(encryptText, 'des-cbc');
+
+// Encrypt with default cepher des
+const encryptText = jasypt.encrypt('admin');
+// Decrypt with default cepher des
+const decryptText = jasypt.decrypt(encryptText);
+
 
 ```
 
 **`CLI`**
 ``` sh
-$ rdojasypt -h
+$ jasypt-common -h
 
-Usage: rdojasypt [options]
+Usage: jasypt-common [options]
 
 Options:
   -v, --version                           output the version number
@@ -33,6 +38,6 @@ Options:
 
 Examples:
 
-  $ rdojasypt -p 0x1995 -e des-cbc,admin
-  $ rdojasypt -p 0x1995 -d des-cbc,BaKgfN63GdOh0kAHsacvmQ==
+  $ jasypt-common -p 0x1995 -e des-cbc,admin
+  $ jasypt-common -p 0x1995 -d des-cbc,BaKgfN63GdOh0kAHsacvmQ==
 ```

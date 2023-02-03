@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./rdoJasypt');
+module.exports = require('./jasypt');

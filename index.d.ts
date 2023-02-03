@@ -4,7 +4,7 @@ interface JasyptConstructor {
   iterations?: number;
 }
 
-declare class RdoJasypt {
+declare class Jasypt {
 
   constructor(options?: JasyptConstructor);
 
@@ -14,9 +14,9 @@ declare class RdoJasypt {
 
   decrypt(encryptedMessage: string, cipherName: string): string;
 
-  setPassword(password: string): string;
+  setPassword(secretKey: string): string;
 
-  setSecretKey(password: string): string;
+  setSecretKey(secretKey: string): string;
 }
 
-export = RdoJasypt;
+export = Jasypt;

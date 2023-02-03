@@ -5,7 +5,7 @@ const Encryptor = require('./encryptor');
 const { isEmpty, isType } = require('./util');
 const cacher = require('./cache');
 
-class RdoJasypt {
+class Jasypt {
 
   constructor(opts = {}) {
     this._encryptor = new Encryptor();
@@ -47,10 +47,16 @@ class RdoJasypt {
    * @param {String} cipherName
    */
   encrypt(clearText, cipherName) {
-    if (isEmpty(clearText) || isEmpty(cipherName)) {
+    let CipherNameV;
+    if (isEmpty(clearText)) {
       return null;
     }
-    return this._encryptor.encrypt(clearText, cipherName, this.secretKey, this.salt, this.iterations);
+    if (isEmpty(cipherName)) {
+      CipherNameV = 'des';
+    } else {
+      CipherNameV = cipherName;
+    }
+    return this._encryptor.encrypt(clearText, CipherNameV, this.secretKey, this.salt, this.iterations);
   }
 
   /**
@@ -58,14 +64,20 @@ class RdoJasypt {
    * @param {String} cipherName
    */
   decrypt(encryptedText, cipherName) {
-    if (isEmpty(encryptedText) || isEmpty(cipherName)) {
+    let CipherNameV;
+    if (isEmpty(encryptedText)) {
       return null;
+    }
+    if (isEmpty(cipherName)) {
+      CipherNameV = 'des';
+    } else {
+      CipherNameV = cipherName;
     }
 
     const cacheKey = this.getCacheKey(encryptedText);
     if (cacher.has(cacheKey)) return cacher.get(cacheKey);
   
-    const value = this._encryptor.decrypt(encryptedText, cipherName, this.secretKey, this.iterations);
+    const value = this._encryptor.decrypt(encryptedText, CipherNameV, this.secretKey, this.iterations);
     cacher.set(cacheKey, value);
 
     return value;
@@ -76,11 +88,14 @@ class RdoJasypt {
   //  * @param {String} cipherName
   //  */
   // decryptConfig (obj, cipherName) {
+  //   let CipherNameV;
   //   if (!isType('Object', obj)) {
   //     return;
   //   }
   //   if (isEmpty(cipherName)) {
-  //     return null;
+  //     CipherNameV = 'des';
+  //   } else {
+  //     CipherNameV = cipherName;
   //   }
 
   //   for (const key in obj) {
@@ -91,7 +106,7 @@ class RdoJasypt {
   //       } else if (isType('String', value)) {
   //         if (value.indexOf('ENC(') === 0 && value.lastIndexOf(')') === value.length - 1) {
   //           const encryptText = value.substring(4, value.length - 1);
-  //           obj[key] = this.decrypt(encryptText, cipherName);
+  //           obj[key] = this.decrypt(encryptText, CipherNameV);
   //         }
   //       } else if (isType('Array', value)) {
   //         for (const item of value) {
@@ -106,7 +121,6 @@ class RdoJasypt {
   //   }
   // }
 
-
 }
 
-module.exports = RdoJasypt;
+module.exports = Jasypt;

@@ -1,16 +1,16 @@
 {
   "name": "jasypt-common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js module adapt to Jasypt",
   "main": "index.js",
   "bin": {
-    "jasypt": "./bin/rdojasypt.js"
+    "jasypt": "./bin/jasypt-common.js"
   },
   "files": [
     "bin/",
     "encryptor.js",
     "index.js",
-    "rdoJasypt.js",
+    "jasypt.js",
     "util.js",
     "cache.js"
   ],
